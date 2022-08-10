@@ -20,9 +20,9 @@ jobs:
         ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
         mkdir -p ~/.ssh
         echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-        echo ${{ secrets.SSH_PRIVATE_KEY }} > ../private.key
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ../private.key
         sudo chmod 600 ../private.key
-        echo ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+        echo "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
 
   build:
     runs-on: ubuntu-latest
