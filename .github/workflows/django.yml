@@ -20,8 +20,9 @@ jobs:
         ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
         mkdir -p ~/.ssh
         echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > private.key
-        sudo chmod 600 private.key
+        mkdir -p keys
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > keys/private.key
+        sudo chmod 600 keys/private.key
         echo "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
 
   build:
@@ -30,4 +31,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: SSH to GCE VM and perform "pull github & deploy django" script
-      run: ssh -i private.key $SSH_USER@${{ secrets.SSH_HOST }} "./pull.sh"
+      run: ssh -i keys/private.key $SSH_USER@${{ secrets.SSH_HOST }} "./pull.sh"
