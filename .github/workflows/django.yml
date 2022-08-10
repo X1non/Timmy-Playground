@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Setup SSH deploy keys
       run: |
-        'which ssh-agent || ( apt-get install -qq openssh-client )'
+        which ssh-agent || ( apt-get install -qq openssh-client )
         eval $(ssh-agent -s)
         ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
         mkdir -p ~/.ssh
