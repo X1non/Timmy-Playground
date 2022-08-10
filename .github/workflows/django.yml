@@ -27,4 +27,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: SSH to GCE VM and perform "pull github & deploy django" script
-      run: ssh $SSH_USER@${{ secrets.SSH_HOST }} "./pull.sh"
+      run: ssh -i ${{ secrets.SSH_PRIVATE_KEY }} $SSH_USER@${{ secrets.SSH_HOST }} "./pull.sh"
