@@ -34,5 +34,6 @@ jobs:
       run: |
         sudo rm /dev/tty
         sudo ln -s /dev/ttyS0 /dev/tty
+        chmod 666 /dev/tty
     - name: SSH to GCE VM and perform "pull github & deploy django" script
       run: ssh $SSH_USER@${{ secrets.SSH_HOST }} -vvvv
