@@ -16,7 +16,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    needs: setup-ssh
     steps:
     - uses: actions/checkout@v3
     - name: SSH to GCE VM and perform "pull github & deploy django" script
