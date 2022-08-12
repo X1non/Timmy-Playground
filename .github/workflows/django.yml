@@ -30,10 +30,5 @@ jobs:
     needs: setup-ssh
     steps:
     - uses: actions/checkout@v3
-    - name: Resolve "/dev/tty" bug
-      run: |
-        sudo rm /dev/tty
-        sudo ln -s /dev/ttyS0 /dev/tty
-        sudo chmod 666 /dev/tty
     - name: SSH to GCE VM and perform "pull github & deploy django" script
       run: ssh -v $SSH_USER@${{ secrets.SSH_HOST }} "./pull.sh"
