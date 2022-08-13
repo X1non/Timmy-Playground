@@ -24,10 +24,6 @@ jobs:
         ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        echo "${{ secrets.SSH_PUBLIC_KEY }}" > ~/.ssh/id_rsa.pub
-        ls ~/.ssh
-        ls /home/runner/.ssh/
-        ssh-copy-id -i ~/.ssh/id_rsa.pub -p 22 $SSH_USER@${{ secrets.SSH_HOST }}
         echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
   build:
