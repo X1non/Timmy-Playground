@@ -21,9 +21,9 @@ jobs:
       run: |
         which ssh-agent || ( apt-get install -qq openssh-client )
         eval $(ssh-agent -s)
-        ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-add "/home/runner/.ssh/id_rsa"
         echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
         cat ~/.ssh/config
 
