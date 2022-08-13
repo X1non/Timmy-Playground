@@ -23,6 +23,7 @@ jobs:
         eval $(ssh-agent -s)
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 400 ~/.ssh/id_rsa
         ssh-add "/home/runner/.ssh/id_rsa"
         echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
         cat ~/.ssh/config
