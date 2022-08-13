@@ -25,6 +25,7 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+        cat ~/.ssh/config
 
   build:
     runs-on: ubuntu-latest
@@ -32,4 +33,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: SSH to GCE VM and perform "pull github & deploy django" script
-      run: ssh -v -o StrictHostKeyChecking=no $SSH_USER@${{ secrets.SSH_HOST }} "./pull.sh"
+      run: ssh -vvv -o StrictHostKeyChecking=no $SSH_USER@${{ secrets.SSH_HOST }} "./pull.sh"
